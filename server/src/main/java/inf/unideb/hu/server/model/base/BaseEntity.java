@@ -1,10 +1,11 @@
-package inf.unideb.hu.server.model;
+package inf.unideb.hu.server.model.base;
 
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
+@MappedSuperclass
 @Data
 public abstract class BaseEntity {
 
