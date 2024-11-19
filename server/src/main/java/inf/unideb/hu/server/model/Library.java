@@ -20,6 +20,10 @@ import java.util.List;
 @NoArgsConstructor
 public class Library extends BaseEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name = "name", nullable = false)
     private String name;
 

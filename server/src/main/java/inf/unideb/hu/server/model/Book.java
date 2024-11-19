@@ -17,6 +17,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Book extends BaseEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(name = "title", nullable = false)
     private String title;
 
@@ -37,8 +41,9 @@ public class Book extends BaseEntity {
     @JsonBackReference(value = "library-books")
     private Library library;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "borrowed_by_member_id")
+    @JsonBackReference(value = "member-books")
     private Member borrowedBy;
 
 }
