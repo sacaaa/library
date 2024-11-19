@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "isbn": "9780743273565",
+    "publicationYear": 1925,
+    "borrowed": false,
+    "library": {
+      "id": 1
+    },
+    "borrowedBy": null
+  },
+  {
+    "id": 2,
+    "title": "1984",
+    "author": "George Orwell",
+    "isbn": "9780451524935",
+    "publicationYear": 1949,
+    "borrowed": true,
+    "library": {
+      "id": 1
+    },
+    "borrowedBy": {
+      "id": 3,
+      "type": "member"
+    }
+  }
+]

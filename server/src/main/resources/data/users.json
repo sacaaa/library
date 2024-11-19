@@ -1,0 +1,33 @@
+[
+  {
+    "id": 1,
+    "type": "librarian",
+    "username": "john_doe",
+    "password": "password123",
+    "email": "john.doe@example.com",
+    "role": "LIBRARIAN",
+    "library": {
+      "id": 1
+    }
+  },
+  {
+    "id": 2,
+    "type": "librarian",
+    "username": "jane_smith",
+    "password": "securepassword",
+    "email": "jane.smith@example.com",
+    "role": "LIBRARIAN",
+    "library": {
+      "id": 1
+    }
+  },
+  {
+    "id": 3,
+    "type": "member",
+    "username": "student_user",
+    "password": "studentpass",
+    "email": "student.user@example.com",
+    "role": "MEMBER",
+    "dateOfBirth": "2000-01-01"
+  }
+]

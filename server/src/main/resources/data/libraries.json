@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "Central Library",
+    "address": {
+      "street": "Main St 2",
+      "city": "Debrecen",
+      "postalCode": "5678",
+      "country": "Hungary"
+    },
+    "phoneNumber": "123-456-7890",
+    "email": "info@centrallibrary.com"
+  }
+]
