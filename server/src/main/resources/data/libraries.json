@@ -1,14 +1,26 @@
 [
   {
     "id": 1,
-    "name": "Central Library",
+    "name": "Debreceni Konyvtar",
     "address": {
-      "street": "Main St 2",
+      "street": "Kossuth utca 23",
       "city": "Debrecen",
       "postalCode": "5678",
-      "country": "Hungary"
+      "country": "Magyarország"
     },
     "phoneNumber": "123-456-7890",
-    "email": "info@centrallibrary.com"
+    "email": "info@debrecenikonyvtar.com"
+  },
+  {
+    "id": 2,
+    "name": "Budapesti Konyvtar",
+    "address": {
+      "street": "Bartók út 64",
+      "city": "Budapest",
+      "postalCode": "5678",
+      "country": "Magyarország"
+    },
+    "phoneNumber": "987-654-3210",
+    "email": "info@budapestikonyvtar.com"
   }
 ]
