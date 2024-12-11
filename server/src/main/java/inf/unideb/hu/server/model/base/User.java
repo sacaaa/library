@@ -56,6 +56,9 @@ public abstract class User extends BaseEntity implements UserDetails {
     @Column(name = "role", nullable = false)
     private Role role;
 
+    @Column(name = "name", nullable = false)
+    private String name;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

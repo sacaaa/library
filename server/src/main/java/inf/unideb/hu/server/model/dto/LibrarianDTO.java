@@ -25,4 +25,6 @@ public class LibrarianDTO extends UserDTO {
 
     private LibraryDTO library;
 
+    private String name;
+
 }

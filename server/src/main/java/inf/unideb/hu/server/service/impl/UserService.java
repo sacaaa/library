@@ -30,6 +30,7 @@ public class UserService implements IUserService {
     @Override
     public List<UserDTO> getUsers() {
         List<User> users = userRepository.findAll();
+
         return users.stream()
                 .map(user -> {
                     if (user instanceof Librarian) {

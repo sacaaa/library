@@ -22,4 +22,6 @@ public class AdminDTO extends UserDTO {
 
     private String Role;
 
+    private String name;
+
 }

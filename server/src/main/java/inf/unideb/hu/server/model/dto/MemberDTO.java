@@ -27,6 +27,8 @@ public class MemberDTO extends UserDTO {
 
     private String Role;
 
+    private String name;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
 
