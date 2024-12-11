@@ -2,6 +2,7 @@ package inf.unideb.hu.server.controller;
 
 
 import inf.unideb.hu.server.model.base.User;
+import inf.unideb.hu.server.repository.UserRepository;
 import inf.unideb.hu.server.service.impl.JwtService;
 import inf.unideb.hu.server.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody Map<String, String> request) {
         String username = request.get("username");
@@ -33,14 +37,21 @@ public class AuthController {
 
         try {
             UserDetails userDetails = userService.loadUserByUsername(username);
+            User user = userRepository.findByEmail(username).orElseThrow(
+                    () -> new UsernameNotFoundException("User not found")
+            );
 
             if (!userService.authenticate(username, password)) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                         .body(Map.of("error", "Invalid username or password"));
             }
 
+            Map<String, Object> extraClaims = Map.of(
+                    "role", user.getRole()
+            );
+
             return ResponseEntity.ok(Map.of(
-                    "accessToken", jwtService.generateToken(userDetails),
+                    "accessToken", jwtService.generateToken(extraClaims, userDetails),
                     "refreshToken", jwtService.generateRefreshToken(userDetails)
             ));
         } catch (UsernameNotFoundException ex) {
@@ -73,12 +84,17 @@ public class AuthController {
         try {
             String username = jwtService.extractUsername(refreshToken);
             UserDetails userDetails = userService.loadUserByUsername(username);
-            System.out.println(jwtService.isTokenValid(refreshToken, userDetails));
+            User user = userRepository.findByEmail(username).orElseThrow(
+                    () -> new UsernameNotFoundException("User not found")
+            );
+
             if (jwtService.isTokenValid(refreshToken, userDetails)) {
-                String newAccessToken = jwtService.generateToken(userDetails);
+                Map<String, Object> extraClaims = Map.of(
+                        "role", user.getRole()
+                );
 
                 return ResponseEntity.ok(Map.of(
-                        "accessToken", newAccessToken
+                        "accessToken", jwtService.generateToken(extraClaims, userDetails)
                 ));
             } else {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
