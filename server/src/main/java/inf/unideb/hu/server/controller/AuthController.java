@@ -47,7 +47,8 @@ public class AuthController {
             }
 
             Map<String, Object> extraClaims = Map.of(
-                    "role", user.getRole()
+                    "role", user.getRole(),
+                    "id", user.getId()
             );
 
             return ResponseEntity.ok(Map.of(
@@ -90,7 +91,8 @@ public class AuthController {
 
             if (jwtService.isTokenValid(refreshToken, userDetails)) {
                 Map<String, Object> extraClaims = Map.of(
-                        "role", user.getRole()
+                        "role", user.getRole(),
+                        "id", user.getId()
                 );
 
                 return ResponseEntity.ok(Map.of(

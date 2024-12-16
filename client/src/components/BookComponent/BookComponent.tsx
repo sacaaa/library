@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAlert } from '../AlertProvider/AlertProvider';
 import fetchWithAuth from '../../utils/fetchWithAuth';
+import { getValueFromToken } from '../../utils/getValueFromToken';
 
 const BookComponent = ({ book }) => {
     const showAlert = useAlert();
@@ -23,10 +24,36 @@ const BookComponent = ({ book }) => {
         }
     }, []);
 
-    const handleBorrow = () => {
+    const handleBorrow = async () => {
         console.log(`Borrowing book: ${book.title}`);
-        showAlert('error', 'Könyv kölcsönözve.');
-        // Add actual borrow logic here
+        // showAlert('error', 'Könyv kölcsönözve.');
+        
+        const response = await fetchWithAuth(`/books/${book.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                title: book.title,
+                author: book.author,
+                isbn: book.isbn,
+                publicationYear: book.publicationYear,
+                borrowed: true,
+                borrowedBy: {
+                    type: "member",
+                    id: getValueFromToken(localStorage.getItem('accessToken'), 'id'),
+                }
+            }),
+        });
+
+        console.log(response);
+
+        if (!response.ok) {
+            throw new Error('Failed to borrow the book.');
+        }
+
+        console.log('Book borrowed successfully');
+        window.location.reload();
     };
 
     const handleDelete = async () => {

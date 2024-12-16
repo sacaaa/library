@@ -19,7 +19,6 @@ const MemberComponent = ({ member }) => {
     };
 
     const handleEdit = () => {
-        console.log(`Editing book: ${book.title}`);
         // Add actual edit logic here
     };
 

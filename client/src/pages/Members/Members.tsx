@@ -69,7 +69,7 @@ const Members = () => {
                 <h1 className="text-2xl font-bold mb-4 text-center">Tagok</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {members.map((member) => (
-                        <MemberComponent member={member} />
+                        <MemberComponent key={member.id} member={member} />
                     ))}
                 </div>
             </div>
