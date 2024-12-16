@@ -19,8 +19,6 @@ public class MemberDTO extends UserDTO {
 
     private Long id;
 
-    private String username;
-
     private String password;
 
     private String email;

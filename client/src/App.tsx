@@ -6,6 +6,7 @@ import Login from './pages/Login/Login'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 import Libraries from './pages/Libraries/Libraries'
 import Books from './pages/Books/Books'
+import Members from './pages/Members/Members'
 
 function App() {
   return (
@@ -27,6 +28,14 @@ function App() {
             element={
                 <ProtectedRoute>
                     <Books />
+                </ProtectedRoute>
+            }
+        />
+        <Route
+            path="/members"
+            element={
+                <ProtectedRoute>
+                  <Members />
                 </ProtectedRoute>
             }
         />

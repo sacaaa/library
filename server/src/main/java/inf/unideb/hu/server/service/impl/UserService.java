@@ -90,10 +90,6 @@ public class UserService implements IUserService {
 
     @Override
     public void register(User user) {
-        if (userRepository.existsByUsername(user.getUsername())) {
-            throw new IllegalArgumentException("Username is already taken.");
-        }
-
         if (userRepository.existsByEmail(user.getEmail())) {
             throw new IllegalArgumentException("Email is already registered.");
         }

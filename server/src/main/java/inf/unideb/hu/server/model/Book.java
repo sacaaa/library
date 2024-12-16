@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import inf.unideb.hu.server.model.base.BaseEntity;
 import inf.unideb.hu.server.model.users.Member;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "books")
@@ -15,6 +12,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(callSuper = true, exclude = {"borrowedBy", "library"})
 public class Book extends BaseEntity {
 
     @Id

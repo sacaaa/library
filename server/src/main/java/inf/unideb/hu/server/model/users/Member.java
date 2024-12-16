@@ -2,6 +2,8 @@ package inf.unideb.hu.server.model.users;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import inf.unideb.hu.server.model.Book;
 import inf.unideb.hu.server.model.base.User;
 import jakarta.persistence.Column;
@@ -16,6 +18,14 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.util.List;
 
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type"
+)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Member.class, name = "member")
+})
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "members")

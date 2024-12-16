@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import inf.unideb.hu.server.model.Book;
 import inf.unideb.hu.server.model.dto.BookDTO;
 import inf.unideb.hu.server.model.dto.BorrowerDTO;
+import inf.unideb.hu.server.model.dto.MemberDTO;
+import inf.unideb.hu.server.model.users.Member;
 import inf.unideb.hu.server.repository.BookRepository;
 import inf.unideb.hu.server.service.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,32 @@ public class BookService implements IBookService {
     @Override
     public Optional<Book> getBookById(Long id) {
         return bookRepository.findById(id);
+    }
+
+    @Override
+    public Optional<Book> updateBook(Long id, BookDTO bookDTO) {
+        return bookRepository.findById(id)
+                .map(book -> {
+                    book.setTitle(bookDTO.getTitle());
+                    book.setAuthor(bookDTO.getAuthor());
+                    book.setPublicationYear(bookDTO.getPublicationYear());
+                    book.setBorrowed(bookDTO.isBorrowed());
+
+                    Member member = objectMapper.convertValue(bookDTO.getBorrowedBy(), Member.class);
+                    book.setBorrowedBy(member);
+
+                    bookRepository.save(book);
+                    return book;
+                });
+    }
+
+    @Override
+    public boolean deleteBook(Long id) {
+        if (bookRepository.existsById(id)) {
+            bookRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
     @Override
