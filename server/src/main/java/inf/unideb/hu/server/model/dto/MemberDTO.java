@@ -30,6 +30,6 @@ public class MemberDTO extends UserDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
 
-    private List<BorrowedBook> borrowedBooks;
+    private List<BorrowedBookDTO> borrowedBookDTOS;
 
 }

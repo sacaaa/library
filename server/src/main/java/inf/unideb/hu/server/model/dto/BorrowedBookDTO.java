@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BorrowedBook {
+public class BorrowedBookDTO {
 
     private Long id;
 
