@@ -44,6 +44,7 @@ public class BookService implements IBookService {
                     book.setAuthor(bookDTO.getAuthor());
                     book.setPublicationYear(bookDTO.getPublicationYear());
                     book.setBorrowed(bookDTO.isBorrowed());
+                    book.setIsbn(bookDTO.getIsbn());
 
                     Member member = objectMapper.convertValue(bookDTO.getBorrowedBy(), Member.class);
                     book.setBorrowedBy(member);
