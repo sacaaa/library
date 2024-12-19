@@ -6,3 +6,7 @@ Frontend indítása:
 
 Backend indítása:
   - mvn spring-boot:run
+
+Stack:
+  - frontend: vite react + typescript, tailwind css
+  - backend: spring boot
