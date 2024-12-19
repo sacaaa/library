@@ -16,4 +16,6 @@ public interface IBookService extends IDTOService<BookDTO> {
 
     Optional<Book> updateBook(Long id, BookDTO bookDTO);
 
+    BookDTO createBook(BookDTO bookDTO);
+
 }

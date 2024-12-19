@@ -1,20 +1,16 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 
-// Defining the context type
 type AlertContextType = (type: 'success' | 'error', message: string) => void;
 
-// Create the context with a default value
 const AlertContext = createContext<AlertContextType | undefined>(undefined);
 
-// AlertProvider component
 export const AlertProvider = ({ children }) => {
     const [alert, setAlert] = useState({ type: null, message: '' });
 
     const showAlert = (type, message) => {
         setAlert({ type, message });
 
-        // Automatically clear the alert after 3 seconds
         setTimeout(() => {
             setAlert({ type: null, message: '' });
         }, 3000);
@@ -70,7 +66,6 @@ export const AlertProvider = ({ children }) => {
     );
 };
 
-// Hook to use the alert
 export const useAlert = (): AlertContextType => {
     const context = useContext(AlertContext);
     if (!context) {

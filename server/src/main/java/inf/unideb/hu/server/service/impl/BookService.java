@@ -77,4 +77,17 @@ public class BookService implements IBookService {
         }
         throw new IllegalArgumentException("Nem megfelelő típus: " + object.getClass().getSimpleName());
     }
+
+    @Override
+    public BookDTO createBook(BookDTO bookDTO) {
+        Book book = objectMapper.convertValue(bookDTO, Book.class);
+
+        if (bookDTO.getBorrowedBy() != null) {
+            Member member = objectMapper.convertValue(bookDTO.getBorrowedBy(), Member.class);
+            book.setBorrowedBy(member);
+        }
+
+        Book savedBook = bookRepository.save(book);
+        return convertToDTO(savedBook);
+    }
 }

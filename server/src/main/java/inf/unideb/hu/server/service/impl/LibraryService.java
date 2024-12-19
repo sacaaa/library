@@ -1,6 +1,7 @@
 package inf.unideb.hu.server.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import inf.unideb.hu.server.model.Address;
 import inf.unideb.hu.server.model.Book;
 import inf.unideb.hu.server.model.Library;
 import inf.unideb.hu.server.model.dto.BookDTO;
@@ -45,7 +46,6 @@ public class LibraryService implements ILibraryService {
                     .map(book -> {
                         BookDTO bookDTO = objectMapper.convertValue(book, BookDTO.class);
                         if (book.isBorrowed() && book.getBorrowedBy() != null) {
-                            // Convert the borrowedBy user to a UserDTO or specific DTO type
                             BorrowerDTO borrowedByDTO = objectMapper.convertValue(book.getBorrowedBy(), BorrowerDTO.class);
                             bookDTO.setBorrowedBy(borrowedByDTO);
                         }
@@ -56,4 +56,34 @@ public class LibraryService implements ILibraryService {
         }
         throw new IllegalArgumentException("Nem megfelelő típus: " + object.getClass().getSimpleName());
     }
+
+    @Override
+    public LibraryDTO createLibrary(LibraryDTO libraryDTO) {
+        Library library = objectMapper.convertValue(libraryDTO, Library.class);
+        Library savedLibrary = libraryRepository.save(library);
+        return convertToDTO(savedLibrary);
+    }
+
+    @Override
+    public Optional<Library> updateLibrary(Long id, LibraryDTO libraryDTO) {
+        return libraryRepository.findById(id)
+                .map(library -> {
+                    library.setName(libraryDTO.getName());
+                    library.setAddress(objectMapper.convertValue(libraryDTO.getAddress(), Address.class));
+                    library.setPhoneNumber(libraryDTO.getPhoneNumber());
+                    library.setEmail(libraryDTO.getEmail());
+                    libraryRepository.save(library);
+                    return library;
+                });
+    }
+
+    @Override
+    public boolean deleteLibrary(Long id) {
+        if (libraryRepository.existsById(id)) {
+            libraryRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
 }

@@ -44,4 +44,9 @@ public class BookController {
         }
     }
 
+    @PostMapping
+    public ResponseEntity<BookDTO> createBook(@RequestBody BookDTO bookDTO) {
+        return ResponseEntity.ok(bookService.createBook(bookDTO));
+    }
+
 }

@@ -13,10 +13,10 @@
   {
     "id": 2,
     "type": "librarian",
-    "password": "securepassword",
-    "email": "jane.smith@example.com",
+    "password": "pass",
+    "email": "tesztkonyvtaros@example.com",
     "role": "LIBRARIAN",
-    "name": "Jane Smith",
+    "name": "Teszt Konyvtaros",
     "library": {
       "id": 1
     }
@@ -24,10 +24,10 @@
   {
     "id": 3,
     "type": "member",
-    "password": "studentpass",
-    "email": "student.user@example.com",
+    "password": "pass",
+    "email": "teszttag@example.com",
     "role": "MEMBER",
     "dateOfBirth": "2000-01-01",
-    "name": "Student User"
+    "name": "Teszt Tag"
   }
 ]

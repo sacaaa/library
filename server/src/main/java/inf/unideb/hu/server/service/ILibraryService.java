@@ -12,4 +12,10 @@ public interface ILibraryService extends IDTOService<LibraryDTO> {
 
     Optional<Library> getLibraryById(Long id);
 
+    LibraryDTO createLibrary(LibraryDTO libraryDTO);
+
+    Optional<Library> updateLibrary(Long id, LibraryDTO libraryDTO);
+
+    boolean deleteLibrary(Long id);
+
 }

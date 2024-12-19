@@ -12,7 +12,7 @@ const Navbar = () => {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
         setLoggedIn(false);
-        window.location.href = '/login'; // Átirányítás bejelentkezési oldalra
+        window.location.href = '/login';
     };
 
     return (

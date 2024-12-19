@@ -28,7 +28,6 @@ const BookComponent = ({ book }) => {
 
     const handleBorrow = async () => {
         console.log(`Borrowing book: ${book.title}`);
-        // showAlert('error', 'Könyv kölcsönözve.');
         
         const response = await fetchWithAuth(`/books/${book.id}`, {
             method: 'PUT',
@@ -156,7 +155,6 @@ const BookComponent = ({ book }) => {
 
     return (
         <>
-            {/* Edit modal */}
             {isEditModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
                     <div className="p-6 rounded-lg shadow-lg w-96 bg-gray-800 text-white">

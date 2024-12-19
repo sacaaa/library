@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Navigáció kezeléséhez
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
     const [email, setEmail] = useState('');
@@ -8,7 +8,7 @@ const RegisterForm = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [birthdate, setBirthdate] = useState('');
     const [error, setError] = useState('');
-    const navigate = useNavigate(); // React Router navigáció
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -40,7 +40,6 @@ const RegisterForm = () => {
                 throw new Error(errorData.message || 'Hiba történt a regisztráció során.');
             }
 
-            // Ha sikeres, átirányítás a /login oldalra
             navigate('/login');
         } catch (error) {
             setError(error instanceof Error ? error.message : 'Ismeretlen hiba történt.');

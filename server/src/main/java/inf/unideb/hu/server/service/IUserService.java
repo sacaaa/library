@@ -1,6 +1,5 @@
 package inf.unideb.hu.server.service;
 
-import com.fasterxml.jackson.databind.JsonMappingException;
 import inf.unideb.hu.server.model.base.User;
 import inf.unideb.hu.server.model.dto.UserDTO;
 
@@ -21,6 +20,6 @@ public interface IUserService extends IDTOService<UserDTO> {
 
     Optional<UserDTO> updateUser(Long id, UserDTO userDTO);
 
-    boolean deleteUser(Long id);
+    void deleteUser(Long id);
 
 }

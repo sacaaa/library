@@ -35,7 +35,7 @@ const LoginForm = () => {
             localStorage.setItem('accessToken', data.accessToken);
             localStorage.setItem('refreshToken', data.refreshToken);
 
-            navigate('/'); // Átirányítás a főoldalra
+            navigate('/');
         } catch (error) {
             setError(error instanceof Error ? error.message : 'Ismeretlen hiba történt.');
         }
